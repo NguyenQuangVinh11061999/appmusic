@@ -64,7 +64,7 @@ public class fragment_playlist extends Fragment {
                     @Override
                     public void accept(List<Playlist> posts) throws Exception {
                         ArrayList<Playlist> arrayList = (ArrayList<Playlist>) posts;
-                        Toast.makeText(getActivity(), ""+arrayList.size(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), ""+arrayList.size(), Toast.LENGTH_SHORT).show();
                         adapter = new PlaylistAdapter(getActivity(), arrayList);
                         listView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();

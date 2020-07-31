@@ -28,9 +28,15 @@
             android:layout_height="wrap_content"/>
 
         <fragment
+            android:id="@+id/fragment_album"
             android:name="com.example.appnghenhac.view.fragment_album"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <fragment
+            android:id="@+id/fragment_baihatyeuthich"
+            android:name="com.example.appnghenhac.view.fragment_baihat_yeuthich"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </ScrollView>
