@@ -7,17 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
-import com.example.appnghenhac.DanhSachNhac_Activity;
+import com.example.appnghenhac.view.DanhSachNhac_Activity;
 import com.example.appnghenhac.Model.QuangCao;
 import com.example.appnghenhac.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterQuangCao extends PagerAdapter {
@@ -73,6 +71,7 @@ public class AdapterQuangCao extends PagerAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(context, DanhSachNhac_Activity.class);
                 intent.putExtra("banner",list.get(position));
+                context.startActivity(intent);
             }
         });
 

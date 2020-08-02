@@ -1,6 +1,7 @@
 package com.example.appnghenhac.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.appnghenhac.Model.Playlist;
+import com.example.appnghenhac.view.PlaylistActivity;
 import com.example.appnghenhac.R;
 
 import java.util.List;
@@ -44,7 +46,7 @@ public class PlaylistAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHoLiday hoLiday = null;
         if (hoLiday == null) {
             hoLiday = new ViewHoLiday();
@@ -69,6 +71,15 @@ public class PlaylistAdapter extends BaseAdapter {
         Glide.with(context)
                 .load(playlist.getHinhicon())
                 .into(hoLiday.imgHinhicon);
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, PlaylistActivity.class);
+                intent.putExtra("playlist",list.get(position));
+                context.startActivity(intent);
+            }
+        });
 
         return convertView;
     }

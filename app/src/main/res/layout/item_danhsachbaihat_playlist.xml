@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="8dp">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/imghinhbaihatplaylist"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@android:color/holo_blue_dark" />
+
+        <TextView
+            android:textSize="18sp"
+            android:id="@+id/txttenbaihatplaylist"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/imghinhbaihatplaylist"
+            android:text="tên bài hát"
+            android:textColor="#000000" />
+
+
+        <TextView
+            android:textSize="15sp"
+            android:id="@+id/txttencasiplaylist"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/txttenbaihatplaylist"
+            android:text="tên ca sĩ"
+            android:textColor="#8C8A8A" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

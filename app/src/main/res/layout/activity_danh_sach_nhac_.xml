@@ -1,47 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:layout_height="match_parent">
+    android:background="#BDBCBC"
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:fitsSystemWindows="true"
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="350dp"
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            app:expandedTitleGravity="center|bottom"
-            app:expandedTitleMarginBottom="33dp"
-            android:background="@color/colorAccent"
             android:id="@+id/collapsingbar"
             android:layout_width="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            app:expandedTitleGravity="center|bottom"
+            app:expandedTitleMarginBottom="33dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <View
-                android:background="@drawable/custom_background"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.Toolbar
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_collapseMode="pin"
-                android:id="@+id/toolbardanhsach"
-                android:elevation="6dp"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_background" />
 
-            <ImageView
-                android:layout_marginTop="10dp"
-                android:elevation="6dp"
-                android:src="@color/colorPrimaryDark"
-                android:layout_gravity="center"
-                android:id="@+id/imghinhdanhsachbaihat"
-                android:layout_width="150dp"
-                android:layout_height="150dp"/>
+                <ImageView
+                    android:id="@+id/imgHinh"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center|top"
+                    android:elevation="6dp"
+                    android:scaleType="fitXY"
+                    android:src="@color/cardview_shadow_start_color" />
+
+                <ImageView
+                    android:id="@+id/imghinhdanhsachbaihat"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="280dp"
+                    android:layout_marginTop="20dp"
+                    android:elevation="6dp"
+                    android:scaleType="fitXY"
+                    android:src="@color/colorPrimaryDark" />
+
+                <TextView
+                    android:id="@+id/txtTenbaihatQuangCao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="200dp"
+                    android:gravity="center"
+                    android:text="Tên bài hát"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
+            </RelativeLayout>
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -49,26 +71,27 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:background="none"
-        android:src="@drawable/floatbuttom"
-        android:scaleType="fitXY"
-        app:fabSize="normal"
-        app:layout_anchorGravity="center|bottom"
-        app:layout_anchor="@id/appbar"
-        app:layout_behavior="@string/bottom_sheet_behavior"
+        android:id="@+id/FloatingActionButton"
         android:layout_width="50dp"
-        android:layout_height="50dp"/>
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/floatbuttom"
+        app:fabSize="normal"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="center|bottom"
+        app:layout_behavior="@string/bottom_sheet_behavior" />
 
     <androidx.core.widget.NestedScrollView
-        android:layout_marginTop="100dp"
-        app:layout_behavior="@string/bottom_sheet_behavior"
+        android:background="#BDBCBC"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="140dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewDanhSach"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
     </androidx.core.widget.NestedScrollView>
 
