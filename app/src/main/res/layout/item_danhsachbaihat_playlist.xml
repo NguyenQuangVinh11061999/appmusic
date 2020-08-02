@@ -10,12 +10,14 @@
         android:layout_margin="5dp">
 
         <ImageView
+            android:scaleType="fitXY"
             android:id="@+id/imghinhbaihatplaylist"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:background="@android:color/holo_blue_dark" />
 
         <TextView
+            android:layout_marginTop="10dp"
             android:textSize="18sp"
             android:id="@+id/txttenbaihatplaylist"
             android:layout_width="200dp"

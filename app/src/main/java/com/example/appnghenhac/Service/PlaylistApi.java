@@ -10,4 +10,7 @@ import retrofit2.http.GET;
 public interface PlaylistApi {
     @GET("getdataplaylist.php")
     Observable<List<Playlist>> getData();
+
+    @GET("getdataAll_playlist.php")
+    Observable<List<Playlist>> getdataAll();
 }

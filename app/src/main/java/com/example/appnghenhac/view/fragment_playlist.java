@@ -1,5 +1,6 @@
 package com.example.appnghenhac.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,6 +41,7 @@ public class fragment_playlist extends Fragment {
     PlaylistApi playlistApi;
     PlaylistAdapter adapter;
     ListView listView;
+    TextView txtHienThi;
 
     @Nullable
     @Override
@@ -49,11 +52,21 @@ public class fragment_playlist extends Fragment {
         playlistApi = retrofit.create(PlaylistApi.class);
 
         getdataQuangCao();
+
+        txtHienThi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),PlaylistAll_Activity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
     public void mapping() {
         listView = view.findViewById(R.id.lstPlayList);
+        txtHienThi = view.findViewById(R.id.txtXemThemPlaylist);
     }
 
     public void getdataQuangCao() {

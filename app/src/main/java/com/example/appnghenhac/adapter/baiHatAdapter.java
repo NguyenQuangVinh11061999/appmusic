@@ -16,11 +16,12 @@ import com.example.appnghenhac.R;
 
 import java.util.ArrayList;
 
-public class BaiHatPlaylistAdapter extends RecyclerView.Adapter<BaiHatPlaylistAdapter.Viewholider>{
+public class baiHatAdapter extends RecyclerView.Adapter<baiHatAdapter.Viewholider> {
+
     Context context;
     ArrayList<BaiHat> arrayList;
 
-    public BaiHatPlaylistAdapter(Context context, ArrayList<BaiHat> arrayList) {
+    public baiHatAdapter(Context context, ArrayList<BaiHat> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
     }
@@ -29,7 +30,7 @@ public class BaiHatPlaylistAdapter extends RecyclerView.Adapter<BaiHatPlaylistAd
     @Override
     public Viewholider onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.item_danhsachbaihat_playlist, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_baihat, parent, false);
         return new Viewholider(view);
     }
 
@@ -39,9 +40,9 @@ public class BaiHatPlaylistAdapter extends RecyclerView.Adapter<BaiHatPlaylistAd
         Glide.with(context)
                 .load(baiHat.getHinhBaiHat())
                 .into(holder.imghinh);
+        holder.txttencasi.setText(baiHat.getCaSi());
+        holder.txttenbaihat.setText(baiHat.getTenBaiHat());
 
-        holder.txtTencasi.setText(baiHat.getCaSi());
-        holder.txtTenbai.setText(baiHat.getTenBaiHat());
     }
 
     @Override
@@ -51,14 +52,13 @@ public class BaiHatPlaylistAdapter extends RecyclerView.Adapter<BaiHatPlaylistAd
 
     public class Viewholider extends RecyclerView.ViewHolder {
         ImageView imghinh;
-        TextView txtTenbai, txtTencasi;
+        TextView txttenbaihat, txttencasi;
 
         public Viewholider(@NonNull View itemView) {
             super(itemView);
-            txtTenbai = itemView.findViewById(R.id.txttenbaihatplaylist);
-            txtTencasi  = itemView.findViewById(R.id.txttencasiplaylist);
-            imghinh = itemView.findViewById(R.id.imghinhbaihatplaylist);
+            imghinh = itemView.findViewById(R.id.img_hinhbh);
+            txttenbaihat = itemView.findViewById(R.id.txtten_baihat);
+            txttencasi = itemView.findViewById(R.id.txt_tencasi);
         }
     }
 }
-
