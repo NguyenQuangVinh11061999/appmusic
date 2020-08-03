@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appnghenhac.Model.BaiHat;
 import com.example.appnghenhac.R;
+import com.example.appnghenhac.adapter.baiHatAdapter;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class fragment_dsbaihat extends Fragment {
     RecyclerView recyclerView;
     ArrayList<BaiHat> arrayList = new ArrayList<>();
     BaiHat baiHat;
-
+    baiHatAdapter baiHatAdapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,6 +34,10 @@ public class fragment_dsbaihat extends Fragment {
             baiHat = (BaiHat) bundle.getSerializable("baihat");
 
         arrayList.add(baiHat);
+        baiHatAdapter = new baiHatAdapter(getContext(),arrayList);
+        Toast.makeText(getContext(), ""+baiHatAdapter.getItemCount(), Toast.LENGTH_SHORT).show();
+        recyclerView.setAdapter(baiHatAdapter);
+        baiHatAdapter.notifyDataSetChanged();
 
         return view;
 

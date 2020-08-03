@@ -1,5 +1,7 @@
 package com.example.appnghenhac.Model;
 
+import android.net.Uri;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -74,10 +76,6 @@ public class BaiHat implements Serializable {
         this.tenBaiHat = tenBaiHat;
     }
 
-    public String getHinhBaiHat() {
-        return hinhBaiHat;
-    }
-
     public void setHinhBaiHat(String hinhBaiHat) {
         this.hinhBaiHat = hinhBaiHat;
     }
@@ -106,4 +104,7 @@ public class BaiHat implements Serializable {
         this.luotThich = luotThich;
     }
 
+    public String getHinhBaiHat() {
+        return hinhBaiHat;
+    }
 }
