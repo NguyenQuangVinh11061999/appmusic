@@ -1,10 +1,12 @@
 package com.example.appnghenhac.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +35,8 @@ public class fragment_chude extends Fragment {
     RecyclerView recyclerView;
     ChuDeAdapter adapter;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
+    TextView txtXemThem;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,12 +44,22 @@ public class fragment_chude extends Fragment {
         recyclerView = view.findViewById(R.id.recycleView);
         Retrofit retrofit = ApiClient.Instrance();
         chuDeApi = retrofit.create(ChuDeApi.class);
+        txtXemThem = view.findViewById(R.id.txtXemThem_Chude);
 
         recyclerView.setHasFixedSize(true);
         // Dang listView
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
         getdataQuangCao();
+
+
+        txtXemThem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ChuDeAll_Activity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

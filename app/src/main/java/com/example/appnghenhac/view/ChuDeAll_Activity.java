@@ -2,18 +2,18 @@ package com.example.appnghenhac.view;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ListView;
 
-import com.example.appnghenhac.Model.Playlist;
+import com.example.appnghenhac.Model.ChuDe;
 import com.example.appnghenhac.R;
 import com.example.appnghenhac.Service.ApiClient;
-import com.example.appnghenhac.Service.PlaylistApi;
-import com.example.appnghenhac.Service.TheLoaiQCAPI;
-import com.example.appnghenhac.adapter.PlaylistAdapter;
+import com.example.appnghenhac.Service.ChuDeApi;
+import com.example.appnghenhac.adapter.ChuDeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,41 +24,52 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-public class PlaylistAll_Activity extends AppCompatActivity {
-    ListView lstDS;
+public class ChuDeAll_Activity extends AppCompatActivity {
+
+    ChuDeApi chuDeApi;
+    RecyclerView recyclerView;
+    ChuDeAdapter adapter;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-    PlaylistApi playlistApi;
-    PlaylistAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_playlist_all_);
+        setContentView(R.layout.activity_chu_de_all_);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        lstDS = findViewById(R.id.lstDsPlaylist);
-
+        recyclerView = findViewById(R.id.recycleView_ChuDe_All);
         Retrofit retrofit = ApiClient.Instrance();
-        playlistApi = retrofit.create(PlaylistApi.class);
-        getdataPlaylist();
+        chuDeApi = retrofit.create(ChuDeApi.class);
+
+        recyclerView.setHasFixedSize(true);
+        // Dang listView
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(layoutManager);
+        getdataQuangCao();
     }
 
-    public void getdataPlaylist() {
-        compositeDisposable.add(playlistApi.getdataAll()
+    public void getdataQuangCao() {
+        compositeDisposable.add(chuDeApi.getdata()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<Playlist>>() {
+                .subscribe(new Consumer<List<ChuDe>>() {
                     @Override
-                    public void accept(List<Playlist> posts) throws Exception {
-                        ArrayList<Playlist> arrayList = (ArrayList<Playlist>) posts;
-                        adapter = new PlaylistAdapter(PlaylistAll_Activity.this,arrayList);
-                        lstDS.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
+                    public void accept(List<ChuDe> posts) throws Exception {
+                        ArrayList<ChuDe> arrayList = (ArrayList<ChuDe>) posts;
+                        adapter = new ChuDeAdapter(ChuDeAll_Activity.this,arrayList);
+                        Log.i("aab",arrayList.get(0).getTenChuDe());
+                        recyclerView.setAdapter(adapter);
                     }
                 }));
+    }
+
+    @Override
+    public void onStop() {
+        compositeDisposable.clear();
+        super.onStop();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.appnghenhac.view;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -10,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -44,6 +46,12 @@ public class PhatNhacActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.thoat);    //Icon muốn hiện thị
+        actionBar.setDisplayUseLogoEnabled(true);
+
         Intent intent = getIntent();
         if (intent != null)
             baiHat = (BaiHat) intent.getSerializableExtra("baihat");
@@ -53,6 +61,8 @@ public class PhatNhacActivity extends AppCompatActivity {
         Fragment_dsbaihat = new fragment_dsbaihat();
         Bundle bundle = new Bundle();
         bundle.putSerializable("baihat", baiHat);
+
+
         Fragment_dsbaihat.setArguments(bundle);
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -81,6 +91,9 @@ public class PhatNhacActivity extends AppCompatActivity {
                 mediaPlayer.seekTo(seekBar.getProgress());
             }
         });
+
+
+
     }
 
     public void updateTime(){
@@ -205,5 +218,25 @@ public class PhatNhacActivity extends AppCompatActivity {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
         txtend.setText(simpleDateFormat.format(mediaPlayer.getDuration()));
         seekBar.setMax(mediaPlayer.getDuration());
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.pause();
+        
     }
 }
